@@ -6,13 +6,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.RegisterPage;
-import pages.RegisterSuccessPage;
+import pages.*;
 
 import java.time.Duration;
 
-public class TC_001_RegisterUserTest {
+public class TC_001_RegisterUserTestUpdated {
 
     WebDriver driver;
 
@@ -27,10 +25,10 @@ public class TC_001_RegisterUserTest {
     }
     @Test
     public void TC_001(){
-        HomePage homePage = new HomePage(driver);
+        HomePageUpdated homePage = new HomePageUpdated(driver);
         homePage.selectRegisterMenu();
 
-        RegisterPage registerPage = new RegisterPage(driver);
+        RegisterPageUpdated registerPage = new RegisterPageUpdated(driver);
         registerPage.setFirstName("Tharindu");
         registerPage.setLastName("Rathnasuuriya");
         registerPage.setEmail("thari@gmail.com");
@@ -40,15 +38,15 @@ public class TC_001_RegisterUserTest {
         registerPage.setConfirmPassword("Test123");
         registerPage.Submit();
 
-        RegisterSuccessPage registerSuccessPage = new RegisterSuccessPage(driver);
+        RegisterSuccessPageUpdated registerSuccessPage = new RegisterSuccessPageUpdated(driver);
         String actualText = registerSuccessPage.registerSuccessText();
-        Assert.assertTrue(actualText.contains("Dear"));
+        Assert.assertTrue(actualText.contains("Dear"),"Registration Attempt failed");
 
 
     }
 
     @AfterMethod
     public void closeBrowser(){
-        // driver.quit();
+        driver.quit();
     }
 }
