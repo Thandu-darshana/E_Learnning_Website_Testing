@@ -10,21 +10,11 @@ import pages.*;
 
 import java.time.Duration;
 
-public class TC_001_RegisterUserTestUpdated {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void openPage(){
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://demo.guru99.com/test/newtours/index.php");
+public class TC_001_RegisterUserTestUpdated extends BaseClass {
 
 
-    }
     @Test
-    public void TC_001(){
+    public void TC_001() {
         HomePageUpdated homePage = new HomePageUpdated(driver);
         homePage.selectRegisterMenu();
 
@@ -40,13 +30,9 @@ public class TC_001_RegisterUserTestUpdated {
 
         RegisterSuccessPageUpdated registerSuccessPage = new RegisterSuccessPageUpdated(driver);
         String actualText = registerSuccessPage.registerSuccessText();
-        Assert.assertTrue(actualText.contains("Dear"),"Registration Attempt failed");
+        Assert.assertTrue(actualText.contains("Dear"), "Registration Attempt failed");
 
 
     }
 
-    @AfterMethod
-    public void closeBrowser(){
-        driver.quit();
-    }
 }
